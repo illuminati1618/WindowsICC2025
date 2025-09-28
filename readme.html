@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrakis ICC 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #20272f;
+            color: #a2937e;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        h2 {
+            color: white;
+            font-size: 1.8em;
+            margin: 40px 0 20px 0;
+            font-weight: 400;
+            border-bottom: 2px solid #a2937e;
+            padding-bottom: 8px;
+        }
+
+        h3 {
+            color: white;
+            font-size: 1.3em;
+            margin: 25px 0 15px 0;
+            font-weight: 500;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        code {
+            background-color: #2a3139;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        ul {
+            margin: 10px 0 20px 30px;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #2a3139;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th {
+            background-color: #3a4149;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .user-audit-table th:first-child,
+        .user-audit-table th:nth-child(2) {
+            text-align: center;
+            font-size: 1em;
+        }
+
+        .user-audit-table th:nth-child(3),
+        .user-audit-table th:nth-child(4) {
+            text-align: left;
+            font-size: 1em;
+        }
+
+        .user-audit-table thead tr:first-child th {
+            font-size: 1em;
+        }
+
+        .user-audit-table th:nth-child(2) {
+            border-right: 2px solid #a2937e;
+        }
+
+        .user-audit-table td:nth-child(2) {
+            border-right: 2px solid #a2937e;
+        }
+
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #3a4149;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:nth-child(even) {
+            background-color: #252c34;
+        }
+
+        strong {
+            color: white;
+            font-weight: 600;
+        }
+
+        .welcome-section {
+            background-color: #2a3139;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid #a2937e;
+        }
+
+        .service-section {
+            background-color: #2a3139;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .requirements-box {
+            background-color: #2a3139;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ARRAKIS // Windows Server 2025 // Windows ICC 2025</h1>
+
+        <div class="welcome-section">
+            <h2>Welcome Message</h2>
+            <p>Welcome to Arrakis. Our system was recently attacked by the Harkonnens and must recover, as many critical security systems are down right now, auditing systems are failing, and critical services are vulnerable. The Sardaukar are also upset that the spice mining is not back to full capacity due to the many security holdups, and so they want you to do your best to get everything back up! As the Lisan Al Gaib, you must fix and secure everything and ensure that the systems remain intact for spice production around the galaxy!</p>
+            
+            <p>The Sardaukar will also be upset if any non-work related files or programs are present on the system.</p>
+            
+            <p>The only authorized browser on the system that is expected to be secured as needed is <strong>Google Chrome</strong>.</p>
+        </div>
+
+        <h2>Critical Services</h2>
+
+        <div class="service-section">
+            <h3>SpiceManager Web Application</h3>
+            <p><strong>IIS HTTP</strong> is hosting an <strong>ASP.NET</strong> application that storing information on a <strong>PostgreSQL</strong> database. There is also an <strong>SMB</strong> file share sharing the PostgreSQL database.</p>
+            <p>The ASP.NET application's function is to allow spice to be generated. It consists of a user registration and login page, and upon logging in, users are redirected to the spice fields page where they can generate spice. This data is then saved on the PostgreSQL database.</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Component</th>
+                        <th>Path</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>ASP.NET application</td><td><code>C:\inetpub\wwwroot\SpiceManager</code></td></tr>
+                    <tr><td>PostgreSQL database and SMB share</td><td><code>C:\PostgreSQL\data</code></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="service-section">
+            <h3>PostgreSQL Database Configuration</h3>
+            <p>The developers have also made a special request to ensure that in PostgreSQL, SCRAM-SHA-256 is used for the "postgres" (superuser) authentication, rather than the current MD5 that is used to store the "postgres" user password. They do not need this change to be made for any accounts other than the "postgres" account. They also want SCRAM-SHA-256 to be used for new accounts that will be made in the future.</p>
+        </div>
+
+        <div class="service-section">
+            <h3>Legacy SpiceManager Windows Service</h3>
+            <p>While the developers of the current full-stack critical service were initially planning out the critical service, they made their first iteration as a simple Windows service. The service is called SpiceManager and can be found in <code>C:\Program Files\Spice Manager\SpiceManager.exe</code>. Although no modifications need to be made to the executable itself, the developers have asked for you not to delete it and have also asked that you make no modifications to the executable or the readme that can be found in the service's folder. Yet, the developers have requested that you secure the Windows service itself, if you see the need.</p>
+        </div>
+
+        <div class="requirements-box">
+            <h2>Service Uptime Requirements</h2>
+            <ul>
+                <li>Please ensure that the ASP.NET application remains accessible</li>
+                <li>Please ensure that the SMB share remains accessible</li>
+            </ul>
+            <p>Here is how service uptime works:</p>
+            <ol>
+                <li>If either the ASP.NET application or the SMB share is down at any point during the competition, you will lose 5 points for each service that is down ONCE.</li>
+                <li>If the ASP.NET application or the SMB share are up, you will receive 1 service uptime point every time an aeacus check is run (approximately every 2-3 minutes). This score will not be visible to you except for on the ReadME, your total uptime score will be added up at the end of the competition and sent out with scores/leaderboards.</li>
+            </ol>
+        </div>
+
+        <h2>User Auditing</h2>
+
+        <table class="user-audit-table">
+            <thead>
+                <tr>
+                    <th colspan="2">Administrators</th>
+                    <th colspan="2">Users</th>
+                </tr>
+                <tr>
+                    <th>House Atreides</th>
+                    <th>Bene Gesserit</th>
+                    <th>Fremen</th>
+                    <th>House Harkonnen</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Paul Atreides</td><td>Reverend Mother</td><td>Chani</td><td>Baron Vladimir</td></tr>
+                <tr><td>Duke Leto Atreides</td><td>Lady Margot Fenring</td><td>Stilgar</td><td>Glossu Rabban</td></tr>
+                <tr><td>Duncan Idaho</td><td>Watermaster</td><td>Jamis</td><td>Piter De Vries</td></tr>
+                <tr><td>Gurney Halleck</td><td>Jessica Atreides</td><td>Shadout Mapes</td><td>Sardaukar Bashar</td></tr>
+                <tr><td>Thufir Hawat</td><td></td><td>Harah</td><td>Feyd-Rautha</td></tr>
+                <tr><td>Dr. Liet Kynes</td><td></td><td>Shishakli</td><td></td></tr>
+                <tr><td>Dr. Wellington Yueh</td><td></td><td>Tanat</td><td></td></tr>
+                <tr><td>Lieutenant Lanville</td><td></td><td>Shamir</td><td></td></tr>
+            </tbody>
+        </table>
+
+        <h3>Passwords:</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Password</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Paul Atreides</td><td>dune</td></tr>
+                <tr><td>Duke Leto Atreides</td><td>GoldenLion@Caladan77!</td></tr>
+                <tr><td>Duncan Idaho</td><td>Swordmaster!Ghola_13</td></tr>
+                <tr><td>Gurney Halleck</td><td>BalladBlade#Sting88</td></tr>
+                <tr><td>Thufir Hawat</td><td>MentatLogic!999</td></tr>
+                <tr><td>Dr. Liet Kynes</td><td>DesertEcology@Sietch42</td></tr>
+                <tr><td>Dr. Wellington Yueh</td><td>TraitorSigil!ShoutOut</td></tr>
+                <tr><td>Lieutenant Lanville</td><td>ShieldWall!Command_17</td></tr>
+                <tr><td>Reverend Mother</td><td>TruthSay!BeneGesserit_66</td></tr>
+                <tr><td>Lady Margot Fenring</td><td>GeneticWeb@Whisper_81</td></tr>
+                <tr><td>Watermaster</td><td>SpiceFlow!Quota_33</td></tr>
+                <tr><td>Jessica Atreides</td><td>VoicePower@Mother_77</td></tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
